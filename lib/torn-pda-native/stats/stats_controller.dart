@@ -4,4 +4,16 @@
 class StatsController {
   // Stub implementation
   StatsController();
+  
+  void logCheckIn() {
+    // Stub implementation
+  }
+  
+  void logCheckOut() {
+    // Stub implementation
+  }
+  
+  void logFirstLoginEver() {
+    // Stub implementation
+  }
 }

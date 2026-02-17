@@ -6,6 +6,8 @@ import 'package:torn_pda/torn-pda-native/auth/native_auth_models.dart';
 
 class NativeAuthProvider extends ChangeNotifier {
   bool tryAutomaticLogins = false;
+  DateTime lastAuthRedirect = DateTime.now();
+  int authErrorsInSession = 0;
 
   Future<void> loadPreferences() async {
     // Stub implementation
@@ -14,6 +16,7 @@ class NativeAuthProvider extends ChangeNotifier {
 
   Future<TornLoginResponseContainer> requestTornRecurrentInitData({
     required GetInitDataModel loginData,
+    BuildContext? context,
   }) async {
     // Stub implementation
     return TornLoginResponseContainer(
