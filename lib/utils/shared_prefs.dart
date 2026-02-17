@@ -1086,7 +1086,7 @@ class Prefs {
   }
 
   Future<bool> getUseMaterial3() async {
-    return await PrefsDatabase.getBool(_kUseMaterial3Theme, false);
+    return await PrefsDatabase.getBool(_kUseMaterial3Theme, true);
   }
 
   Future setUseMaterial3(bool value) async {
