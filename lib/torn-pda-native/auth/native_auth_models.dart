@@ -32,7 +32,7 @@ class GetInitDataModel {
   final String? email;
   final String? password;
   final dynamic loginData;
-  final String? playerId;
+  final int? playerId;
   final String? sToken;
 
   GetInitDataModel({
