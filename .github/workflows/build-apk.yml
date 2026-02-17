@@ -134,9 +134,11 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Run build_runner
-        run: |
-          flutter pub run build_runner build --delete-conflicting-outputs
+      # Skip build_runner for CI - generated files are pre-committed
+      # Uncommitted if regeneration is needed
+      # - name: Run build_runner
+      #   run: |
+      #     flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Build APK
         run: flutter build apk --release --no-shrink
