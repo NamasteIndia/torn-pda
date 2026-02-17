@@ -1,6 +1,6 @@
 # PDA specifics
-/lib/config/
-/lib/torn-pda-native/
+# Note: Stub implementations in /lib/config/ and /lib/torn-pda-native/ are committed
+# Developers should create their own implementations based on these stubs
 /android/app/sign-key.jks
 .kiro/
 .shotgun/
