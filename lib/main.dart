@@ -279,11 +279,31 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // https://github.com/flutter/flutter/issues/126585
     MediaQuery.viewInsetsOf(context).bottom;
 
+    // Determine brightness based on theme
+    final Brightness brightness = _themeProvider.currentTheme == AppTheme.light ? Brightness.light : Brightness.dark;
+    
+    // Create proper Material 3 color scheme
+    final ColorScheme colorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.blueGrey,
+      brightness: brightness,
+      // Override specific colors to maintain app's custom look
+      surface: _themeProvider.canvas,
+      onSurface: _themeProvider.mainText,
+    );
+
     final ThemeData theme = ThemeData(
+      useMaterial3: _themeProvider.useMaterial3,
+      colorScheme: colorScheme,
+      brightness: brightness,
+      // Maintain backward compatibility with custom colors
+      scaffoldBackgroundColor: _themeProvider.canvas,
       cardColor: _themeProvider.cardColor,
       cardTheme: CardThemeData(
-        // Material 3 overrides
-        surfaceTintColor: _themeProvider.cardSurfaceTintColor,
+        // Material 3: Let surface tint work naturally when Material 3 is enabled
+        // When disabled, use custom colors
+        surfaceTintColor: _themeProvider.useMaterial3 
+            ? null  // Let Material 3 handle this
+            : _themeProvider.cardSurfaceTintColor,
         color: _themeProvider.cardColor,
       ),
       appBarTheme: AppBarTheme(
@@ -291,9 +311,6 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
         surfaceTintColor: _themeProvider.currentTheme == AppTheme.extraDark ? Colors.black : null,
         backgroundColor: _themeProvider.statusBar,
       ),
-      primarySwatch: Colors.blueGrey,
-      useMaterial3: _themeProvider.useMaterial3,
-      brightness: _themeProvider.currentTheme == AppTheme.light ? Brightness.light : Brightness.dark,
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           foregroundColor:

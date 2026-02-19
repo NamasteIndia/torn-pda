@@ -1966,7 +1966,19 @@ class SettingsPageState extends State<SettingsPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Flexible(child: Text("Use Material theme")),
+              const Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Use Material Design 3"),
+                    SizedBox(height: 4),
+                    Text(
+                      "Modern design language with dynamic theming",
+                      style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+                    ),
+                  ],
+                ),
+              ),
               Switch(
                 value: _themeProvider.useMaterial3,
                 onChanged: (enabled) async {
